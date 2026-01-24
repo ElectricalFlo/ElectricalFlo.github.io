@@ -33,15 +33,28 @@
       padding:22px 18px;
       box-shadow:0 10px 30px rgba(0,0,0,.3);
     }
+
+    /* 🔹 LOGO STYLE */
+    .logo{
+      display:block;
+      margin:0 auto 18px;
+      max-width:200px;
+      width:100%;
+      height:auto;
+      filter: drop-shadow(0 0 12px rgba(80,120,255,.6));
+    }
+
     h1{
       margin:0 0 6px;
       font-size:30px;
       letter-spacing:.4px;
+      text-align:center;
     }
     .sub{
       margin:0 0 18px;
       color:var(--muted);
       font-size:14px;
+      text-align:center;
     }
     .btn{
       display:flex;
@@ -79,6 +92,10 @@
 <body>
   <div class="wrap">
     <div class="card">
+
+      <!-- 🔹 LOGO -->
+      <img src="/logo.jpg" alt="N2CFX Logo" class="logo">
+
       <h1>N2CFX Network Hub</h1>
       <p class="sub">Quick links & contact</p>
 
