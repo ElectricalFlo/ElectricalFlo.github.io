@@ -126,6 +126,60 @@
     0 6px 16px rgba(0,0,0,.45);
   transform:translateY(-1px);
 }
+    /* --- Icon-only animation --- */
+.icon{
+  display:inline-block;
+  transition: transform .18s ease;
+}
+.btn:hover .icon{
+  transform: translateY(-1px) scale(1.06);
+}
+
+/* Keep buttons from shifting if you prefer: comment out transforms in hover blocks above
+   and rely on icon animation only. */
+
+/* --- Keyboard focus (accessibility) --- */
+.btn:focus{
+  outline:none;
+}
+.btn:focus-visible{
+  outline: 3px solid rgba(74,120,255,.75);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 4px rgba(74,120,255,.18);
+}
+
+/* --- Ripple effect --- */
+.btn{
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn::after{
+  content:"";
+  position:absolute;
+  left: var(--rx, 50%);
+  top: var(--ry, 50%);
+  width: 0;
+  height: 0;
+  border-radius:999px;
+  transform: translate(-50%, -50%);
+  background: rgba(255,255,255,.22);
+  pointer-events:none;
+}
+
+.btn:active::after{
+  width: 260px;
+  height: 260px;
+  transition: width .35s ease, height .35s ease;
+  background: rgba(255,255,255,.18);
+}
+
+/* Slightly different ripple for secondary buttons */
+.btn.secondary::after{
+  background: rgba(74,120,255,.18);
+}
+
 
 
     footer{
