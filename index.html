@@ -35,16 +35,61 @@
     }
 
     /* 🔹 LOGO STYLE */
-    .logo{
-  display:block;
+  /* 🔹 LOGO BADGE CONTAINER */
+.logo-badge{
+  display:flex;
+  justify-content:center;
+  align-items:center;
   margin:0 auto 22px;
-  max-width:280px;   /* ⬅ bigger */
+  padding:18px;
+  width:fit-content;
+  border-radius:22px;
+  background:
+    radial-gradient(circle at top,
+      rgba(60,110,255,.18),
+      rgba(20,30,60,.35)
+    );
+  border:1px solid rgba(120,160,255,.25);
+  box-shadow:
+    0 0 25px rgba(60,110,255,.35),
+    inset 0 0 18px rgba(255,255,255,.05);
+
+  /* entrance animation */
+  animation: logoFadeIn .9s ease-out both;
+}
+
+/* 🔹 LOGO IMAGE */
+.logo{
+  display:block;
+  max-width:280px;
   width:100%;
   height:auto;
-  filter: drop-shadow(0 0 14px rgba(80,120,255,.6));
-      @media (min-width: 600px){
+
+  /* color-matched glow (blue) */
+  filter:
+    drop-shadow(0 0 10px rgba(70,120,255,.75))
+    drop-shadow(0 0 22px rgba(70,120,255,.45));
+}
+
+/* Bigger on desktop */
+@media (min-width: 600px){
   .logo{
-    max-width:340px;
+    max-width:360px;
+  }
+}
+
+/* 🔹 SUBTLE ENTRANCE ANIMATION */
+@keyframes logoFadeIn{
+  from{
+    opacity:0;
+    transform:translateY(10px) scale(.98);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
   }
 }
 
