@@ -34,28 +34,24 @@
       background:var(--card);
       border:1px solid var(--border);
       border-radius:18px;
-      padding:22px 18px;
+      padding:24px 20px;
       box-shadow:0 10px 30px rgba(0,0,0,.3);
     }
 
+    /* 🔹 LOGO */
+    .logo{
+      display:block;
+      margin:0 auto 22px;
+      max-width:280px;
+      width:100%;
+      height:auto;
+      filter:
+        drop-shadow(0 0 10px rgba(70,120,255,.75))
+        drop-shadow(0 0 22px rgba(70,120,255,.45));
+      animation: logoFadeIn .9s ease-out both;
+    }
 
-    /* 🔹 LOGO IMAGE */
-   .logo{
-  display:block;
-  margin:0 auto 22px;
-  max-width:320px;
-  width:100%;
-  height:auto;
-
-  filter:
-    drop-shadow(0 0 10px rgba(70,120,255,.5))
-    drop-shadow(0 0 22px rgba(70,120,255,.45));
-
-  animation: logoFadeIn .9s ease-out both;
-}
-
-
-    @media (min-width: 600px){
+    @media (min-width:600px){
       .logo{ max-width:360px; }
     }
 
@@ -72,13 +68,15 @@
     }
 
     .sub{
-      margin:0 0 18px;
+      margin:0 0 20px;
       color:var(--muted);
       font-size:14px;
       text-align:center;
     }
 
+    /* 🔹 BUTTON BASE */
     .btn{
+      position:relative;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -90,100 +88,101 @@
       text-decoration:none;
       font-weight:700;
       font-size:16px;
+      color:var(--text);
+      overflow:hidden;
       transition:transform .12s ease, box-shadow .18s ease, opacity .18s ease;
-
+      -webkit-tap-highlight-color: transparent;
     }
 
     .btn:active{ transform:scale(.99); }
 
+    /* 🔹 ICON ANIMATION */
+    .icon{
+      display:inline-block;
+      transition:transform .18s ease;
+    }
+    .btn:hover .icon{
+      transform: translateY(-1px) scale(1.06);
+    }
+
+    /* 🔹 PRIMARY (Allmon3) */
     .btn.primary{
-  background:var(--accent);
-  color:#ffffff;
-  box-shadow:
-    0 0 12px rgba(74,120,255,.45),
-    0 4px 14px rgba(0,0,0,.4);
-}
+      background:var(--accent);
+      color:#ffffff;
+      box-shadow:
+        0 0 12px rgba(74,120,255,.45),
+        0 4px 14px rgba(0,0,0,.4);
+    }
 
     .btn.primary:hover{
-  opacity:.95;
-  transform:translateY(-1px);
-  box-shadow:
-    0 0 18px rgba(74,120,255,.6),
-    0 8px 22px rgba(0,0,0,.45);
-}
+      opacity:.95;
+      box-shadow:
+        0 0 18px rgba(74,120,255,.6),
+        0 8px 22px rgba(0,0,0,.45);
+    }
 
+    /* 🔹 SHOP BUTTON (secondary-primary) */
+    .btn.shop{
+      background:linear-gradient(135deg,#4a78ff,#6a8cff);
+      color:#ffffff;
+      border:1px solid rgba(120,160,255,.45);
+      box-shadow:
+        0 0 14px rgba(74,120,255,.45),
+        0 6px 18px rgba(0,0,0,.45);
+    }
 
+    .btn.shop:hover{
+      box-shadow:
+        0 0 22px rgba(74,120,255,.7),
+        0 10px 26px rgba(0,0,0,.55);
+    }
+
+    /* 🔹 SECONDARY */
     .btn.secondary{
       background:#222a35;
-      color:var(--text);
       border:1px solid #2f3948;
     }
-    
+
     .btn.secondary:hover{
-  border-color:rgba(74,120,255,.6);
-  box-shadow:
-    0 0 0 1px rgba(74,120,255,.25),
-    0 6px 16px rgba(0,0,0,.45);
-  transform:translateY(-1px);
-}
-    /* --- Icon-only animation --- */
-.icon{
-  display:inline-block;
-  transition: transform .18s ease;
-}
-.btn:hover .icon{
-  transform: translateY(-1px) scale(1.06);
-}
+      border-color:rgba(74,120,255,.6);
+      box-shadow:
+        0 0 0 1px rgba(74,120,255,.25),
+        0 6px 16px rgba(0,0,0,.45);
+    }
 
-/* Keep buttons from shifting if you prefer: comment out transforms in hover blocks above
-   and rely on icon animation only. */
+    /* 🔹 RIPPLE EFFECT */
+    .btn::after{
+      content:"";
+      position:absolute;
+      left:var(--rx,50%);
+      top:var(--ry,50%);
+      width:0;
+      height:0;
+      border-radius:999px;
+      transform:translate(-50%,-50%);
+      pointer-events:none;
+      background:rgba(255,255,255,.22);
+    }
 
-/* --- Keyboard focus (accessibility) --- */
-.btn:focus{
-  outline:none;
-}
-.btn:focus-visible{
-  outline: 3px solid rgba(74,120,255,.75);
-  outline-offset: 3px;
-  box-shadow: 0 0 0 4px rgba(74,120,255,.18);
-}
+    .btn:active::after{
+      width:260px;
+      height:260px;
+      transition:width .35s ease,height .35s ease;
+    }
 
-/* --- Ripple effect --- */
-.btn{
-  position: relative;
-  overflow: hidden;
-  -webkit-tap-highlight-color: transparent;
-}
+    .btn.secondary::after{ background:rgba(74,120,255,.18); }
+    .btn.shop::after{ background:rgba(255,255,255,.28); }
 
-.btn::after{
-  content:"";
-  position:absolute;
-  left: var(--rx, 50%);
-  top: var(--ry, 50%);
-  width: 0;
-  height: 0;
-  border-radius:999px;
-  transform: translate(-50%, -50%);
-  background: rgba(255,255,255,.22);
-  pointer-events:none;
-}
-
-.btn:active::after{
-  width: 260px;
-  height: 260px;
-  transition: width .35s ease, height .35s ease;
-  background: rgba(255,255,255,.18);
-}
-
-/* Slightly different ripple for secondary buttons */
-.btn.secondary::after{
-  background: rgba(74,120,255,.18);
-}
-
-
+    /* 🔹 KEYBOARD FOCUS */
+    .btn:focus{ outline:none; }
+    .btn:focus-visible{
+      outline:3px solid rgba(74,120,255,.75);
+      outline-offset:3px;
+      box-shadow:0 0 0 4px rgba(74,120,255,.18);
+    }
 
     footer{
-      margin-top:18px;
+      margin-top:20px;
       text-align:center;
       font-size:12px;
       color:var(--muted);
@@ -195,26 +194,33 @@
   <div class="wrap">
     <div class="card">
 
-        <img src="/logo.jpg" alt="N2CFX Logo" class="logo">
+      <img src="/logo.jpg" alt="N2CFX Logo" class="logo">
 
-      <h1>N2CFX Network</h1>
+      <h1>N2CFX Network Hub</h1>
       <p class="sub">Quick links & contact</p>
 
-      <a class="btn primary" href="/allmon3/" target="_blank" rel="noopener noreferrer"
->📡 The Fancy Chris Hub</a>
+      <a class="btn primary" href="/allmon3/" target="_blank" rel="noopener noreferrer">
+        <span class="icon">📡</span> Allmon3 Dashboard
+      </a>
 
-      <a class="btn secondary" href="https://electricalflo.com/" target="_blank" rel="noopener noreferrer">
-  <span class="icon">🖨️</span> ElectricalFlo 3D Shop
-</a>
+      <a class="btn shop" href="https://electricalflo.com/" target="_blank" rel="noopener noreferrer">
+        <span class="icon">🖨️</span> ElectricalFlo 3D Shop
+      </a>
 
+      <a class="btn secondary" href="https://www.tiktok.com/@n2cfx" target="_blank" rel="noopener noreferrer">
+        <span class="icon">🎥</span> TikTok
+      </a>
 
-      <a class="btn secondary" href="https://www.tiktok.com/@n2cfx" target="_blank" rel="noreferrer">🎥 TikTok</a>
+      <a class="btn secondary" href="https://www.qrz.com/db/N2CFX" target="_blank" rel="noopener noreferrer">
+        <span class="icon">📻</span> QRZ Profile
+      </a>
 
-      <a class="btn secondary" href="https://www.qrz.com/db/N2CFX" target="_blank" rel="noreferrer">📻 QRZ Profile</a>
+      <a class="btn secondary" href="mailto:flores@N2CFX.com" target="_blank" rel="noopener noreferrer">
+        <span class="icon">✉️</span> Email
+      </a>
 
-      <a class="btn secondary" href="mailto:flores@N2CFX.com">✉️ Contact Us</a>
+      <footer>© N2CFX • Securely served via Cloudflare</footer>
 
-      <footer>© N2CFX • 2026</footer>
     </div>
   </div>
 </body>
